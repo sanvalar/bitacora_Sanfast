@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f5ef">
+  <meta name="description" content="Taza & Grano: café de especialidad, tostado con cariño y servido para disfrutar sin prisa.">
+  <title>Taza & Grano — Café para disfrutar sin prisa</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --cream: #f8f5ef;
+      --paper: #fffdf9;
+      --coffee: #39271e;
+      --coffee-light: #765443;
+      --orange: #c96f42;
+      --muted: #81766e;
+      --line: #e8e0d6;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Trebuchet MS", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--coffee);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+
+    .topbar {
+      min-height: 38px;
+      display: grid;
+      place-items: center;
+      padding: 7px 16px;
+      background: var(--coffee);
+      color: #f7eade;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .header { background: var(--cream); }
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -.04em;
+      white-space: nowrap;
+    }
+    .brand-mark {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--orange);
+      border-radius: 50%;
+      color: var(--orange);
+      font-size: 17px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 34px; }
+    .nav-links a {
+      color: var(--coffee-light);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s ease;
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 22px;
+      border: 1px solid var(--coffee);
+      border-radius: 2px;
+      background: var(--coffee);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .nav-cta:hover, .button:hover {
+      transform: translateY(-2px);
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+    .button.secondary { background: transparent; color: var(--coffee); }
+    .button.secondary:hover { color: white; }
+
+    .hero {
+      position: relative;
+      min-height: 590px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(28, 19, 14, .83) 0%, rgba(28, 19, 14, .63) 43%, rgba(28, 19, 14, .06) 100%),
+        url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=2000&q=85") center 53% / cover;
+      color: #fffaf4;
+    }
+    .hero-content { max-width: 570px; padding: 92px 0 100px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 19px;
+      color: #e3a47e;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 31px; height: 1px; background: currentColor; content: ""; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
+    h1 {
+      max-width: 560px;
+      margin-bottom: 21px;
+      font-size: clamp(48px, 7vw, 82px);
+      letter-spacing: -.055em;
+      line-height: .99;
+    }
+    h1 em { color: #e3a47e; font-weight: 400; }
+    .hero-copy { max-width: 420px; margin-bottom: 30px; color: #e6ddd4; font-size: 15px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero .button { border-color: #f6eee6; background: #f6eee6; color: var(--coffee); }
+    .hero .button:hover { border-color: var(--orange); background: var(--orange); color: white; }
+    .hero .button.secondary { border-color: rgba(255,255,255,.7); background: transparent; color: white; }
+    .hero .button.secondary:hover { border-color: var(--orange); }
+    .hero-note {
+      position: absolute;
+      right: max(24px, calc((100vw - 1160px) / 2));
+      bottom: 34px;
+      color: #f8f0e9;
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .intro { padding: 92px 0 84px; text-align: center; }
+    .section-eyebrow {
+      margin-bottom: 12px;
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .intro h2, .section-heading h2 {
+      margin-bottom: 16px;
+      font-size: clamp(34px, 4vw, 49px);
+      letter-spacing: -.04em;
+      line-height: 1.1;
+    }
+    .intro > .wrap > p:last-child { max-width: 600px; margin: 0 auto; color: var(--muted); font-size: 14px; }
+
+    .menu-section { padding: 78px 0 94px; background: var(--paper); }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+    .section-heading h2 { margin-bottom: 0; }
+    .section-heading > p { max-width: 330px; margin-bottom: 3px; color: var(--muted); font-size: 13px; }
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .menu-card {
+      padding: 30px 27px 27px;
+      border: 1px solid var(--line);
+      background: var(--cream);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(57,39,30,.08); }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border: 1px solid #dbc4b5;
+      border-radius: 50%;
+      color: var(--orange);
+      font-size: 18px;
+    }
+    .menu-card h3 { margin-bottom: 9px; font-size: 24px; }
+    .menu-card p { min-height: 46px; margin-bottom: 20px; color: var(--muted); font-size: 12px; }
+    .price { display: flex; align-items: center; justify-content: space-between; color: var(--coffee-light); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .price strong { color: var(--orange); font-family: var(--serif); font-size: 20px; letter-spacing: 0; }
+
+    .story { display: grid; grid-template-columns: 1fr 1fr; min-height: 470px; }
+    .story-image {
+      min-height: 420px;
+      background: url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=85") center / cover;
+    }
+    .story-content { display: flex; align-items: center; padding: 72px max(40px, calc((100vw - 1160px) / 2)); padding-left: clamp(40px, 8vw, 120px); background: #eee7dc; }
+    .story-inner { max-width: 450px; }
+    .story-content h2 { margin-bottom: 20px; font-size: clamp(36px, 4vw, 51px); letter-spacing: -.045em; line-height: 1.08; }
+    .story-content p:not(.section-eyebrow) { margin-bottom: 25px; color: var(--muted); font-size: 14px; }
+
+    .visit { padding: 78px 0; text-align: center; }
+    .visit h2 { margin-bottom: 12px; font-size: clamp(34px, 4vw, 48px); }
+    .visit-copy { margin-bottom: 30px; color: var(--muted); font-size: 13px; }
+    .visit-details { display: flex; justify-content: center; flex-wrap: wrap; gap: 48px; margin-bottom: 31px; }
+    .detail { min-width: 150px; }
+    .detail strong { display: block; margin-bottom: 4px; color: var(--coffee); font-family: var(--serif); font-size: 17px; font-weight: 400; }
+    .detail span { color: var(--muted); font-size: 11px; }
+
+    footer { padding: 25px 0; border-top: 1px solid var(--line); }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-row .brand { font-size: 17px; }
+    .footer-note { margin: 0; color: var(--muted); font-size: 10px; letter-spacing: .04em; }
+    .social { display: flex; gap: 18px; color: var(--coffee-light); font-size: 11px; font-weight: 700; }
+    .social a:hover { color: var(--orange); }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 36px, 600px); }
+      .nav { min-height: 70px; flex-wrap: wrap; padding: 14px 0; }
+      .nav-links { order: 3; width: 100%; justify-content: center; gap: 21px; padding-top: 10px; }
+      .nav-links a { font-size: 10px; }
+      .nav-cta { min-height: 39px; padding: 0 14px; font-size: 9px; }
+      .hero { min-height: 550px; background-position: 58% center; }
+      .hero-content { padding: 72px 0 90px; }
+      .hero-note { right: 18px; bottom: 18px; font-size: 12px; }
+      .intro { padding: 70px 0; }
+      .menu-section { padding: 66px 0; }
+      .section-heading { align-items: start; flex-direction: column; gap: 13px; }
+      .menu-grid { grid-template-columns: 1fr; gap: 12px; }
+      .menu-card { padding: 23px; }
+      .card-icon { margin-bottom: 14px; }
+      .menu-card p { min-height: 0; }
+      .story { grid-template-columns: 1fr; }
+      .story-image { min-height: 310px; }
+      .story-content { padding: 56px 24px; }
+      .story-inner { max-width: 600px; margin: 0 auto; }
+      .visit { padding: 65px 0; }
+      .visit-details { gap: 24px 36px; }
+    }
+    @media (max-width: 420px) {
+      .wrap { width: calc(100% - 30px); }
+      .brand { font-size: 19px; }
+      .nav-links { gap: 14px; }
+      .hero { min-height: 520px; }
+      .hero-actions { align-items: stretch; flex-direction: column; max-width: 230px; }
+      .hero-actions .button { width: 100%; }
+      .footer-row { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Café de especialidad · tostado con cariño · servido sin prisa</div>
+
+  <header class="header">
+    <nav class="nav wrap" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="Taza y Grano, inicio">
+        <span class="brand-mark" aria-hidden="true">tg</span>
+        Taza &amp; Grano
+      </a>
+      <div class="nav-links">
+        <a href="#menu">Nuestro café</a>
+        <a href="#historia">Nuestra historia</a>
+        <a href="#visitanos">Visítanos</a>
+      </div>
+      <a class="nav-cta" href="#menu">Ver el menú</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div class="hero-content">
+          <p class="eyebrow">Un buen día empieza aquí</p>
+          <h1 id="hero-title">El café sabe mejor <em>sin prisa.</em></h1>
+          <p class="hero-copy">Granos de origen, manos expertas y ese primer sorbo que hace que todo lo demás pueda esperar.</p>
+          <div class="hero-actions">
+            <a class="button" href="#menu">Descubre el menú</a>
+            <a class="button secondary" href="#historia">Conócenos</a>
+          </div>
+        </div>
+      </div>
+      <span class="hero-note">Hecho con calma, desde 2018</span>
+    </section>
+
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="wrap">
+        <p class="section-eyebrow">Un pequeño ritual</p>
+        <h2 id="intro-title">No es solo café. Es tu momento.</h2>
+        <p>Seleccionamos cada grano por su historia y su sabor. Lo preparamos al momento, para que encuentres en cada taza un motivo para bajar el ritmo.</p>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="section-eyebrow">Recién preparado</p>
+            <h2 id="menu-title">Favoritos de la casa</h2>
+          </div>
+          <p>Clásicos bien hechos y nuevas formas de disfrutar el café. Siempre con granos recién molidos.</p>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <span class="card-icon" aria-hidden="true">◉</span>
+            <h3>Espresso de origen</h3>
+            <p>Intenso, dulce y con notas de chocolate. El comienzo perfecto para cualquier día.</p>
+            <div class="price"><span>Doble · 60 ml</span><strong>$55</strong></div>
+          </article>
+          <article class="menu-card">
+            <span class="card-icon" aria-hidden="true">☕</span>
+            <h3>Latte de la casa</h3>
+            <p>Espresso suave y leche cremosa, con un toque de arte en cada taza.</p>
+            <div class="price"><span>Caliente · 12 oz</span><strong>$75</strong></div>
+          </article>
+          <article class="menu-card">
+            <span class="card-icon" aria-hidden="true">✳</span>
+            <h3>Cold brew lento</h3>
+            <p>Extraído en frío durante 16 horas. Refrescante, sedoso y naturalmente dulce.</p>
+            <div class="price"><span>Frío · 12 oz</span><strong>$80</strong></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" id="historia" aria-labelledby="story-title">
+      <div class="story-image" role="img" aria-label="Preparación artesanal de café en una barra"></div>
+      <div class="story-content">
+        <div class="story-inner">
+          <p class="section-eyebrow">De la finca a tu taza</p>
+          <h2 id="story-title">Café con origen. Hecho con corazón.</h2>
+          <p>Trabajamos de cerca con productores que cuidan cada cosecha. Tostamos en pequeños lotes para respetar el carácter de cada grano y compartirlo contigo, taza a taza.</p>
+          <a class="button secondary" href="#visitanos">Ven a conocernos</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visitanos" aria-labelledby="visit-title">
+      <div class="wrap">
+        <p class="section-eyebrow">Tu mesa te espera</p>
+        <h2 id="visit-title">Pasa por un café.</h2>
+        <p class="visit-copy">Un espacio tranquilo, una taza recién hecha y siempre un lugar para ti.</p>
+        <div class="visit-details">
+          <div class="detail"><strong>Encuéntranos</strong><span>Av. del Café 128, Centro</span></div>
+          <div class="detail"><strong>Estamos abiertos</strong><span>Lun–Sáb · 8:00 a 20:00</span></div>
+          <div class="detail"><strong>Escríbenos</strong><span>hola@tazaygrano.mx</span></div>
+        </div>
+        <a class="button" href="mailto:hola@tazaygrano.mx">Hablemos de café</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">tg</span>Taza &amp; Grano</a>
+      <p class="footer-note">© 2025 Taza &amp; Grano. Una taza a la vez.</p>
+      <div class="social" aria-label="Redes sociales">
+        <a href="https://www.instagram.com/" aria-label="Instagram">Instagram</a>
+        <a href="https://www.facebook.com/" aria-label="Facebook">Facebook</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
